@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <title>BackPressure</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/assets/css/tachyons.min.css">
+  <body class="bg-washed-blue pa4"> 
+   <h1 class="f1">BackPressure</h1>
+    <h2 class="f2">Kubernetes Services</h2>
+    <div id="mylistofthings" class="fl w-80">
+       <div class="pa4">
+            <div class="overflow-auto">
+                <table class="f6 w-100 mw8 center" cellspacing="0" id="mylistofsvcs">
+                <thead>
+                    <tr class="stripe-dark">
+                    <th class="fw6 tl pa3 bg-white">Name</th>
+                    <th class="fw6 tl pa3 bg-white">Namespace</th>
+                    <th class="fw6 tl pa3 bg-white">Ports</th>
+                    <th class="fw6 tl pa3 bg-white">IP</th>
+                    <th class="fw6 tl pa3 bg-white">Selector</th>
+                    </tr>
+                </thead>
+                <tbody class="lh-copy">
+                    <tr class="stripe-dark" v-for="svc in svcs">
+                        <td class="pa3">{{ svc.metadata.name }}</td>
+                        <td class="pa3">{{ svc.metadata.namespace }}</td>
+                        <td class="pa3"><ul><li v-for="port in svc.spec.ports">{{ port.port }} / {{ port.protocol }}</li></ul>   </td>
+                        <td class="pa3">{{ svc.spec.clusterIP }}</td>
+                        <td class="pa3">{{ formatSelector(svc.spec.selector) }}</td>
+                    </tr>
+                </tbody>
+                </table>
+            </div>
+       </div>
+    </div>
+
+  </body>
+  <script src="/assets/js/jquery-3.2.1.min.js"></script>
+  <script src="/assets/js/vue-2.3.4.js"></script>
+  <script src="/assets/js/k8s.js"></script>
+  <script src="/assets/js/app.js"></script>
+  
+</html>
