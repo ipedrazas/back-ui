@@ -16,16 +16,15 @@ spec:
         release: {{ .Release.Name }}
     spec:
       containers:
-        - image: nginx:alpine
+        - image: ipedrazas/k8s
           imagePullPolicy: Always
-          name: nginx
+          name: k8s
           ports:
-            - containerPort: 80
+            - containerPort: 8001
               protocol: TCP
-          volumeMounts:
-            - name: config-nginx
-              readOnly: true
-              mountPath: /etc/nginx/conf.d 
+          command: 
+            - "kubectl proxy"
+          
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
@@ -41,6 +40,10 @@ spec:
               port: {{ .Values.service.internalPort }}
           resources:
 {{ toYaml .Values.resources | indent 12 }}
+          volumeMounts:
+            - name: config-nginx
+              readOnly: true
+              mountPath: /etc/nginx/conf.d
     {{- if .Values.nodeSelector }}
       nodeSelector:
 {{ toYaml .Values.nodeSelector | indent 8 }}

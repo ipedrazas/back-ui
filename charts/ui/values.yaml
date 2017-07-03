@@ -3,12 +3,12 @@
 # Declare variables to be passed into your templates.
 replicaCount: 1
 image:
-  repository: nginx
-  tag: stable
+  repository: ipedrazas/ui
+  tag: backpressure
   pullPolicy: IfNotPresent
 service:
-  name: nginx
-  type: ClusterIP
+  name: ui
+  type: NodePort
   externalPort: 80
   internalPort: 80
 ingress:
