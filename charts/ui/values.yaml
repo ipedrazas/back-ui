@@ -35,3 +35,13 @@ resources: {}
   #requests:
   #  cpu: 100m
   #  memory: 128Mi
+
+
+backpressure:
+  svc:
+    name: backpressure
+    externalPort: 80
+    internalPort: 80
+    type: ClusterIP
+    selector:
+      component: backpressure 

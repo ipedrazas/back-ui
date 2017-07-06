@@ -1,0 +1,34 @@
+.title{
+    font-weight: bolder;
+    font-size: x-large;
+    
+}
+
+.lead{
+    font-weight: bolder;
+}
+
+.hidden{
+    display: none;
+}
+
+.entry{
+    margin-bottom: 20px;
+    margin-top: 20px;
+    padding-bottom: 30px;
+    padding-top: 15px;
+    border-top-color: black;
+    border-top-width: 1px;
+    border-top-style: solid;
+    
+}
+
+.green{
+    color: #045a04;
+    background-color: #edfbed;
+}
+
+.red{
+    color: #840202;
+    background-color: #fdeded;
+}
